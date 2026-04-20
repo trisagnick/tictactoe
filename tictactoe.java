@@ -1,20 +1,38 @@
 public class tictactoe {
 
+    static char[][] board = {
+        {'-', '-', '-'},
+        {'-', '-', '-'},
+        {'-', '-', '-'}
+    };
+
     public static void main(String[] args) {
-        int slot = 7; // Example input
-
-        int[] position = convertSlotToPosition(slot);
-
-        System.out.println("Slot: " + slot);
-        System.out.println("Row: " + position[0]);
-        System.out.println("Column: " + position[1]);
+        // Test cases
+        System.out.println("Is (1, 1) valid? " + isValidMove(1, 1)); // Should be true
+        
+        // Simulate a move
+        board[1][1] = 'X';
+        System.out.println("Is (1, 1) valid after 'X' move? " + isValidMove(1, 1)); // Should be false
+        System.out.println("Is (3, 0) valid? " + isValidMove(3, 0)); // Should be false (out of bounds)
     }
 
-    // UC4: Convert slot (1–9) to row & column (0–2)
-    public static int[] convertSlotToPosition(int slot) {
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
-
-        return new int[]{row, col};
+    /**
+     * Checks if the given row and column are within bounds
+     * and if the target cell is empty.
+     * Input: Row, Column
+     * Output: true if valid, false otherwise.
+     */
+    static boolean isValidMove(int row, int col) {
+        // 1. Boundary Check: Row and column must be between 0 and 2
+        if (row >= 0 && row <= 2 && col >= 0 && col <= 2) {
+            
+            // 2. Cell Check: Check if the cell currently contains the empty placeholder
+            if (board[row][col] == '-') {
+                return true;
+            }
+        }
+        
+        // If either check fails, the move is rejected
+        return false;
     }
 }
