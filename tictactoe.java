@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class tictactoe {
+public class TicTacToe {
 
     static Scanner scanner = new Scanner(System.in);
 
